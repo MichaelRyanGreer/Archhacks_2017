@@ -1,6 +1,9 @@
 
 var pages = document.getElementsByClassName("page");
 var lockers = [];
+var userNames = [];
+var userAll = [];
+var userNumbers = [];
 lockers.push(null);
 lockers.push(null);
 barName = "Puzzles"
@@ -34,10 +37,30 @@ document.getElementById("loginPageBTN").addEventListener("click", function () {
 )
 
 document.getElementById("loginBTN").addEventListener("click", function () {
-	currentUser = document.getElementById("username").value + document.getElementById("userPin").value
+	currentUser = document.getElementById("username").value + document.getElementById("userPin").value + document.getElementById("userNumber").value
 	currentName = document.getElementById("username").value
-		showPage("homePage");
+	currentNumber = document.getElementById("userNumber").value
+	var exists = false
+	for (i = 0; i < userNames.length; i++){
+		if(userNames[i] === currentName && userNumbers[i] === currentNumber){
+			exists = true;
+			if(userAll[i] === currentUser){
+				showPage("homePage");
+				document.getElementById("userHomeName").innerHTML = currentName;
+			}
+			else{
+				showPage("incorrectPass");
+			}
+		}
 	}
+	if (!exists){
+		userNames.push(currentName);
+		userNumbers.push(currentNumber);
+		userAll.push(currentUser);
+	  showPage("homePage");
+	  document.getElementById("userHomeName").innerHTML = currentName + "<br><h3>Thanks for signing up!</h3>";
+	}
+}
 )
 
 document.getElementById("logout").addEventListener("click", function () {
@@ -150,6 +173,12 @@ document.getElementById("change5").addEventListener("click", function () {
 )
 
 document.getElementById("change6").addEventListener("click", function () {
+	  currentUser = null;
+		showPage("landing");
+	}
+)
+
+document.getElementById("change7").addEventListener("click", function () {
 	  currentUser = null;
 		showPage("landing");
 	}

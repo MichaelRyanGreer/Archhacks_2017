@@ -49,8 +49,9 @@ Released   : 20140207
 			<h2>Welcome to <span id="currentBarName"> </span></h2>
 		</div>
 		<form >
-				Name: <input class="inputForm" id="username" type="text"><br>
-				Pin: <input class="inputForm" id="userPin" type="number"><br>
+				Full Name: <input class="inputForm" id="username" type="text"><br>
+				Phone Number: <input class="inputForm" id="userNumber" type="text"><br>
+				Pin: <input class="inputForm" id="userPin" type="password"><br>
 		</form>
 		<button class="button" id="loginBTN">Login</button>
 		<br><br><br>
@@ -61,7 +62,7 @@ Released   : 20140207
 	<div class="page" id="homePage">
 		<div id="welcome" class="container">
 			<div class="title">
-				<h2>Your Homepage</h2>
+				<h2>Welcome, <span id="userHomeName"></span></h2>
 			</div>
 			<button class="button" id="reqBTN">Request Locker</button>
 			<button class="button" id="retBTN">Return Keys</button>
@@ -141,6 +142,15 @@ Released   : 20140207
 		</div>
 	</div>
 
+	<div class="page" id="incorrectPass">
+		<div id="welcome" class="container">
+			<div class="title">
+				<h2>Sorry, Your Pin is Incorrect</h2>
+			</div>
+			<br>
+				<button class="button" id="change7">Head Home</button>
+		</div>
+	</div>
 
 
 <!-- this is some garbage
