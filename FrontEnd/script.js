@@ -1,25 +1,158 @@
 
 var pages = document.getElementsByClassName("page");
+var lockers = [];
+lockers.push(null);
+lockers.push(null);
+barName = "Puzzles"
+barCode = "0001";
+var currentUser = null;
+
 
 function showPage(id) {
+	console.log(id + " is the page loading");
 	if (id == "login") {
 		currentUser = null;
 	}
 	for(let page of pages) {
-  console.log(page.id + " " + id + " ");
 		if(page.id == id) {
-			page.style.display = "";
+			page.style.display = "inline";
 		} else {
 			page.style.display = "none";
 		}
 	}
 }
 
+document.getElementById("loginPageBTN").addEventListener("click", function () {
+		if (document.getElementById("userBarCode").value === barCode || document.getElementById("userBarName").value === barName){
+			showPage("login");
+			document.getElementById("currentBarName").innerHTML = barName;
+		}
+		else{
+			showPage("barDNE");
+		}
+	}
+)
+
 document.getElementById("loginBTN").addEventListener("click", function () {
+	currentUser = document.getElementById("username").value + document.getElementById("userPin").value
+	currentName = document.getElementById("username").value
 		showPage("homePage");
 	}
 )
 
+document.getElementById("logout").addEventListener("click", function () {
+		showPage("login");
+	}
+)
+
+document.getElementById("logout2").addEventListener("click", function () {
+		showPage("login");
+	}
+)
+
+document.getElementById("requestConfirm").addEventListener("click", function () {
+		showPage("requestConfirmPage");
+	}
+)
+
+document.getElementById("change1").addEventListener("click", function () {
+	  currentUser = null;
+		showPage("landing");
+	}
+)
+
+document.getElementById("headHome").addEventListener("click", function () {
+		showPage("landing");
+	}
+)
+
+document.getElementById("reqBTN2").addEventListener("click", function () {
+	if (lockers[0] === null || lockers[1] === null){
+		showPage("request");
+		for (i = 0; i < lockers.length; i++){
+			if (lockers[i] === null){
+				document.getElementById("boxNumDisplay").innerHTML = i + 1;
+				document.getElementById("reqName").innerHTML = currentName;
+				lockers[i] = currentUser;
+				break;
+			}
+		}
+	}
+	else{
+		 showPage("noSpace");
+	 }
+	}
+)
+
+document.getElementById("reqBTN").addEventListener("click", function () {
+	if (lockers[0] === null || lockers[1] === null){
+		showPage("request");
+		for (i = 0; i < lockers.length; i++){
+			if (lockers[i] === null){
+				document.getElementById("boxNumDisplay").innerHTML = i + 1;
+				document.getElementById("reqName").innerHTML = currentName;
+				lockers[i] = currentUser;
+				break;
+	    }
+	  }
+	}
+  else{
+	   showPage("noSpace");
+   }
+ }
+)
+
+document.getElementById("retBTN").addEventListener("click", function () {
+		hasLocker = false;
+		lockerNumber = null;
+		for (i = 0; i < lockers.length; i++){
+			if (lockers[i] === currentUser){
+				hasLocker = true;
+				lockerNumber = i;
+			}
+		}
+		if(hasLocker)	{
+			lockers[lockerNumber] = null;
+			//Open the door
+			document.getElementById("openingLocker").innerHTML = " " + (lockerNumber + 1);
+			showPage("keyReturned");
+		}
+		else {
+			showPage("noLocker");
+		}
+
+	}
+)
 
 
-showPage("login");
+document.getElementById("change2").addEventListener("click", function () {
+	  currentUser = null;
+		showPage("landing");
+	}
+)
+
+document.getElementById("change3").addEventListener("click", function () {
+	  currentUser = null;
+		showPage("landing");
+	}
+)
+
+document.getElementById("change4").addEventListener("click", function () {
+	  currentUser = null;
+		showPage("landing");
+	}
+)
+
+document.getElementById("change5").addEventListener("click", function () {
+	  currentUser = null;
+		showPage("landing");
+	}
+)
+
+document.getElementById("change6").addEventListener("click", function () {
+	  currentUser = null;
+		showPage("landing");
+	}
+)
+
+showPage("landing");

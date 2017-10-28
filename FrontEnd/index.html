@@ -24,33 +24,126 @@ Released   : 20140207
 
 </head>
 <body>
-<div class="page" id="login">
+<div class="page" id="landing">
 	<div id="header-wrapper">
 		<div id="header" class="container">
-			<div id="logo"> <span class="icon icon-cogs"></span>
+			<div id="logo"> <span class="" ><img style="width: 100px; height: 100px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/LACMTA_Circle_Purple_Line.svg/2000px-LACMTA_Circle_Purple_Line.svg.png"></img></span>
 				<h1><a href="#">Barcode</a></h1><br>
 			<div id="menu">
 				<form >
-						Name: <input class="inputForm" type="text"><br>
-						Phone Number: <input class="inputForm" type="number">
+						Barcode: <input class="inputForm" id="userBarCode" type="text"><br>
+						Or <br>
+						Bar Name: <input class="inputForm" id="userBarName" type="text">
 				</form>
-					<button class="button" id="loginBTN">Login</button>
+					<button class="button" id="loginPageBTN">Login Here</button>
 			</div>
 		</div>
 	</div>
 </div>
 </div>
 
+
+<div class="page" id="login">
+	<div id="welcome" class="container">
+		<div class="title">
+			<h2>Welcome to <span id="currentBarName"> </span></h2>
+		</div>
+		<form >
+				Name: <input class="inputForm" id="username" type="text"><br>
+				Pin: <input class="inputForm" id="userPin" type="number"><br>
+		</form>
+		<button class="button" id="loginBTN">Login</button>
+		<br><br><br>
+		<button class="button" id="change1">Change Bar</button>
+	</div>
+</div>
 
 	<div class="page" id="homePage">
 		<div id="welcome" class="container">
 			<div class="title">
 				<h2>Your Homepage</h2>
 			</div>
-			<p>This is your homepage<p>
+			<button class="button" id="reqBTN">Request Locker</button>
+			<button class="button" id="retBTN">Return Keys</button>
+			<br><br><br>
+			<button class="button" id="logout">Logout</button>
+			<button class="button" id="change2">Change Bar</button>
 		</div>
 	</div>
 
+	<div class="page" id="noLocker">
+		<div id="welcome" class="container">
+			<div class="title">
+				<h2>You have no locker</h2>
+			</div>
+			<button class="button" id="reqBTN2">Request Locker</button>
+			<br><br><br>
+			<button class="button" id="logout2">Logout</button>
+		</div>
+	</div>
+
+	<div class="page" id="keyReturned">
+		<div id="welcome" class="container">
+			<div class="title">
+				<h2>Your Keys are Being Returned</h2><br>
+				<h3>Please open locker<span id="openingLocker"></span></h3>
+			</div>
+			<br><br><br>
+			<button class="button" id="change6">Logout</button>
+		</div>
+	</div>
+
+	<div class="page" id="request">
+		<div id="welcome" class="container">
+			<div class="title">
+				<h2>Request a Locker</h2>
+			</div>
+				<h3>Please note:
+					<ul>
+							<br><li>Make sure you only insert car keys</li>
+							<li>Drink Responsibly</li>
+							<li>Call 1-888-675-1820 for help with Alcoholism</li>
+							<button class="button" id="requestConfirm">Confirm Request</button>
+					</ul>
+				</h3>
+			<button class="button" id="change3">Logout</button>
+		</div>
+	</div>
+
+	<div class="page" id="requestConfirmPage">
+		<div id="welcome" class="container">
+			<div class="title">
+				<h2>Request Confirmed! Thanks <span id="reqName"></span></h2>
+			</div>
+			<h3> Please place your keys in box number:<h3><br>
+				<h3 id="boxNumDisplay"><h3>
+			<button class="button" id="headHome">Head Home</button>
+		</div>
+	</div>
+
+	<div class="page" id="noSpace">
+		<div id="welcome" class="container">
+			<div class="title">
+				<h2>Sorry, we are out of space</h2>
+			</div>
+			<h3> Please contact the bartender for additional storage<h3><br>
+				<button class="button" id="change4">Logout</button>
+		</div>
+	</div>
+
+	<div class="page" id="barDNE">
+		<div id="welcome" class="container">
+			<div class="title">
+				<h2>Sorry, that bar does not exist on out system (yet...)</h2>
+			</div>
+			<br>
+				<button class="button" id="change5">Head Home</button>
+		</div>
+	</div>
+
+
+
+<!-- this is some garbage
 	<div class="page" id="wrapper3">
 		<div id="portfolio" class="container">
 			<div class="title">
@@ -101,6 +194,7 @@ Released   : 20140207
 		<li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
 	</ul>
 </div>
+-->
 <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
