@@ -5,26 +5,100 @@
   <br>
   <br>
   <br>
-  <form action="https://api.particle.io/v1/devices/2d0029000847343232363230/closeDoor?access_token=2d96bbcb25edb1910d9b73db3b3eebd96cdb0c06" method="POST">
-    Lock a door<br>
-    <br>
-    <input type="radio" name="arg" value="0">Test Box 0
-    <br>
-    <input type="radio" name="arg" value="1">Test Box 1
-    <br>
-    <br>
-    <input type="submit" value="Close the selected door">
-  </form>
-  <form action="https://api.particle.io/v1/devices/2d0029000847343232363230/runSensor?access_token=2d96bbcb25edb1910d9b73db3b3eebd96cdb0c06" method="POST">
-    Simulate trying to unlock door<br>
-    <br>
-    <input type="radio" name="arg" value="0">Test Box 0
-    <br>
-    <input type="radio" name="arg" value="1">Test Box 1
-    <br>
-    <br>
-    <input type="submit" value="Try to open the selected door">
-  </form>
+	  
+	  
+	  <script type="text/javascript" src="http://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
+	 
+ 
+
+	  
+	  <button class="button" id="open0">open0</button>
+	  <button class="button" id="open1">open1</button><br>
+	  <button class="button" id="close0">close0</button>
+	  <button class="button" id="close1">close1</button><br>
+	  <button class="button" id="test0">test0</button>
+	  <button class="button" id="test1">test1</button>
+	  
+	  <script>
+		  
+var particle = new Particle();
+var token;
+
+ 
+ 
+ 
+ 
+particle.login({username: login, password:password}).then(loginSuccess, loginError);
+ 
+ function loginSuccess(data) {
+    console.log('API call completed on promise resolve: ', data.body.access_token);
+    token = data.body.access_token;
+}
+		  
+function loginError(error) {
+    console.log('API call completed on promise fail: ', error);
+}
+ var login = 'EMAIL';
+var password = 'PASS';
+var deviceId = 'ID';
+ 
+ 
+ 
+document.getElementById("open0").addEventListener("click", function () {
+	myReturnValue0 = particle.callFunction({ deviceId: deviceId, name: 'openDoor', argument: "0", auth: token });
+	myReturnValue0.then(
+  	function(data) {
+    	console.log('Function called succesfully:', data.body.return_value);
+  	}, function(err) {
+    	console.log('An error occurred:', err);
+  	});
+});
+document.getElementById("open1").addEventListener("click", function () {
+	myReturnValue1 = particle.callFunction({ deviceId: deviceId, name: 'openDoor', argument: "1", auth: token });
+	myReturnValue1.then(
+  	function(data) {
+    	console.log('Function called succesfully:', data.body.return_value);
+  	}, function(err) {
+    	console.log('An error occurred:', err);
+  	});
+});
+document.getElementById("close0").addEventListener("click", function () {
+	myReturnValue1 = particle.callFunction({ deviceId: deviceId, name: 'closeDoor', argument: "0", auth: token });
+	myReturnValue1.then(
+  	function(data) {
+    	console.log('Function called succesfully:', data.body.return_value);
+  	}, function(err) {
+    	console.log('An error occurred:', err);
+  	});
+});
+document.getElementById("close1").addEventListener("click", function () {
+	myReturnValue1 = particle.callFunction({ deviceId: deviceId, name: 'closeDoor', argument: "1", auth: token });
+	myReturnValue1.then(
+  	function(data) {
+    	console.log('Function called succesfully:', data.body.return_value);
+  	}, function(err) {
+    	console.log('An error occurred:', err);
+  	});
+});
+document.getElementById("test0").addEventListener("click", function () {
+	myReturnValue1 = particle.callFunction({ deviceId: deviceId, name: 'runSensor', argument: "0", auth: token });
+	myReturnValue1.then(
+  	function(data) {
+    	console.log('Function called succesfully:', data.body.return_value);
+  	}, function(err) {
+    	console.log('An error occurred:', err);
+  	});
+});
+document.getElementById("test1").addEventListener("click", function () {
+	myReturnValue1 = particle.callFunction({ deviceId: deviceId, name: 'runSensor', argument: "1", auth: token });
+	myReturnValue1.then(
+  	function(data) {
+    	console.log('Function called succesfully:', data.body.return_value);
+  	}, function(err) {
+    	console.log('An error occurred:', err);
+  	});
+});
+</script>
   </center>
   </body>
 </html>
