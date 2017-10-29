@@ -9,6 +9,25 @@ lockers.push(null);
 barName = "Puzzles"
 barCode = "0001";
 var currentUser = null;
+recentDoor = null;
+
+var particle = new Particle();
+var token;
+
+var login = 'Email';
+var password = 'Pass';
+var deviceId = 'id';  // Comes from the number in the particle.io Console
+
+function loginSuccess(data) {
+    console.log('API call completed on promise resolve: ', data.body.access_token);
+    token = data.body.access_token;
+}
+
+function loginError(error) {
+    console.log('API call completed on promise fail: ', error);
+}
+
+particle.login({username: login, password:password}).then(loginSuccess, loginError);
 
 
 function showPage(id) {
@@ -100,6 +119,8 @@ document.getElementById("change1").addEventListener("click", function () {
 )
 
 document.getElementById("headHome").addEventListener("click", function () {
+	particle.callFunction({ deviceId: deviceId, name: 'closeDoor', argument: recentDoor.toString(), auth: token });
+	recentDoor = null;
 	showPage("landing");
 }
 )
@@ -112,6 +133,9 @@ document.getElementById("reqBTN2").addEventListener("click", function () {
 				document.getElementById("boxNumDisplay").innerHTML = i + 1;
 				document.getElementById("reqName").innerHTML = currentName;
 				lockers[i] = currentUser;
+				//FIXME open the door
+				particle.callFunction({ deviceId: deviceId, name: 'openDoor', argument: i.toString(), auth: token });
+				recentDoor = i;
 				break;
 			}
 		}
@@ -130,6 +154,9 @@ document.getElementById("reqBTN").addEventListener("click", function () {
 				document.getElementById("boxNumDisplay").innerHTML = i + 1;
 				document.getElementById("reqName").innerHTML = currentName;
 				lockers[i] = currentUser;
+				//FIXME open the door
+				recentDoor = i;
+				particle.callFunction({ deviceId: deviceId, name: 'openDoor', argument: i.toString(), auth: token });
 				break;
 			}
 		}
@@ -139,6 +166,48 @@ document.getElementById("reqBTN").addEventListener("click", function () {
 	}
 }
 )
+
+function getSensorData(){
+	var getTheKeys = particle.callFunction({ deviceId: deviceId, name: 'runSensor', argument: lockerNumber, auth: token });
+	showPage("keyReturned");
+	document.getElementById("canRetrieve").innerHTML = "Sensing..."
+	getTheKeys.then(
+		function(data){
+			var getTheKeys2 = data.body.return_value;
+			console.log(getTheKeys2 + " calling data retrieved");
+			dataRetrieve(getTheKeys2);
+		}, function (err)	{
+
+		});
+		//console.log("Returning function with sensor value: " + getTheKeys2);
+		//return getTheKeys2;
+}
+
+function dataRetrieve(getTheKeys)	{
+	console.log(getTheKeys + " Is what the function passesd");
+	if (getTheKeys === -1){
+		document.getElementById("openingLockerTryAgain").innerHTML = " " + (lockerNumber + 1);
+		document.getElementById("canRetrieveTryAgain").innerHTML = "Sensor did not detect breath. Please try again."
+		showPage("keyReturnedTryAgain");
+		return;
+	}
+	else if (getTheKeys === 0) {
+		document.getElementById("openingLocker").innerHTML = " " + (lockerNumber + 1);
+		document.getElementById("canRetrieve").innerHTML = "Grab you keys!"
+		showPage("keyReturned");
+		return;
+}
+else if (getTheKeys === 1){
+	document.getElementById("openingLocker").innerHTML = " " + (lockerNumber + 1);
+	document.getElementById("canRetrieve").innerHTML = "You are too intoxicated to drive. Please find another way home."
+	showPage("keyReturned");
+	return;
+}
+else {
+showPage("noLocker");
+return;
+}
+}
 
 document.getElementById("retBTN").addEventListener("click", function () {
 	hasLocker = false;
@@ -153,25 +222,10 @@ document.getElementById("retBTN").addEventListener("click", function () {
 	if(hasLocker)	{
 		lockers[lockerNumber] = null;
 		//See status from sensor
-		//-1 --> drunk and no keys
-		//0 --> not drunk, get keys
-
-		getTheKeys = 0;
-		if (getTheKeys === 0){
-			document.getElementById("openingLocker").innerHTML = " " + (lockerNumber + 1);
-			document.getElementById("canRetrieve").innerHTML = "Ready to open, have a safe night!"
-			showPage("keyReturned");
-		}
-		else{
-			document.getElementById("openingLocker").innerHTML = " " + (lockerNumber + 1);
-			document.getElementById("canRetrieve").innerHTML = "Sorry, but you are above the legal limit."
-			showPage("keyReturned");
-		}
-	}
-else {
-	showPage("noLocker");
+		//0 --> drunk and no keys
+		//-1 --> not drunk, get keys
+		getSensorData();
 }
-
 }
 )
 
@@ -209,6 +263,11 @@ document.getElementById("change6").addEventListener("click", function () {
 document.getElementById("change7").addEventListener("click", function () {
 	currentUser = null;
 	showPage("login");
+}
+)
+
+document.getElementById("change8").addEventListener("click", function () {
+	showPage("homePage");
 }
 )
 
