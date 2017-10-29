@@ -1,0 +1,65 @@
+<!DOCTYPE>
+<html>
+  <body>
+  <center>
+  <br>
+  <br>
+  <br>
+<script type="text/javascript" src="http://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
+	 
+ 
+
+	  
+	  <button class="button" id="myButton0">Login0</button>
+	  <button class="button" id="myButton1">Login1</button>
+
+	  
+	  <script>
+		  
+var particle = new Particle();
+var token;
+
+var login = '<loginEmailHere>';
+var password = '<PASSWORD>';
+var deviceId = '<ID>'; // Comes from the number in the particle.io Console
+ 
+ 
+ 
+ 
+particle.login({username: login, password:password}).then(loginSuccess, loginError);
+ 
+ function loginSuccess(data) {
+    console.log('API call completed on promise resolve: ', data.body.access_token);
+    token = data.body.access_token;
+}
+		  
+function loginError(error) {
+    console.log('API call completed on promise fail: ', error);
+}
+ 
+ 
+ 
+ 
+document.getElementById("myButton0").addEventListener("click", function () {
+	myReturnValue0 = particle.callFunction({ deviceId: deviceId, name: 'openDoor', argument: "0", auth: token });
+	myReturnValue0.then(
+  	function(data) {
+    	console.log('Function called succesfully:', data);
+  	}, function(err) {
+    	console.log('An error occurred:', err);
+  	});
+});
+document.getElementById("myButton1").addEventListener("click", function () {
+	myReturnValue1 = particle.callFunction({ deviceId: deviceId, name: 'openDoor', argument: "1", auth: token });
+	myReturnValue1.then(
+  	function(data) {
+    	console.log('Function called succesfully:', data);
+  	}, function(err) {
+    	console.log('An error occurred:', err);
+  	});
+});
+	
+</script></script>
+  </center>
+  </body>
+</html>
