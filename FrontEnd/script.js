@@ -14,9 +14,9 @@ recentDoor = null;
 var particle = new Particle();
 var token;
 
-var login = 'email';
-var password = 'pass';
-var deviceId = 'id';  // Comes from the number in the particle.io Console
+var login = 'michaelryangreer@gmail.com';
+var password = 'HelloWorld1';
+var deviceId = '2d0029000847343232363230';  // Comes from the number in the particle.io Console
 
 function loginSuccess(data) {
     console.log('API call completed on promise resolve: ', data.body.access_token);
