@@ -35,7 +35,7 @@ Released   : 20140207
 						Or <br>
 						Bar Name: <input class="inputForm" id="userBarName" type="text">
 				</form>
-					<button class="button" id="loginPageBTN">Login Here</button>
+					<button type="submit" class="button" id="loginPageBTN">Login Here</button>
 			</div>
 		</div>
 	</div>
@@ -49,7 +49,7 @@ Released   : 20140207
 			<h2>Welcome to <span id="currentBarName"> </span></h2>
 		</div>
 		<form >
-				Full Name: <input class="inputForm" id="username" type="text"><br>
+				Name: <input class="inputForm" id="username" type="text"><br>
 				Phone Number: <input class="inputForm" id="userNumber" type="text"><br>
 				Pin: <input class="inputForm" id="userPin" type="password"><br>
 		</form>
@@ -86,8 +86,8 @@ Released   : 20140207
 	<div class="page" id="keyReturned">
 		<div id="welcome" class="container">
 			<div class="title">
-				<h2>Your Keys are Being Returned</h2><br>
-				<h3>Please open locker<span id="openingLocker"></span></h3>
+				<h2>Your Keys are Being Processed From Locker <span id="openingLocker"></span></h2><br>
+				<h3 id="canRetrieve"></h3>
 			</div>
 			<br><br><br>
 			<button class="button" id="change6">Logout</button>
@@ -118,7 +118,7 @@ Released   : 20140207
 			</div>
 			<h3> Please place your keys in box number:<h3><br>
 				<h3 id="boxNumDisplay"><h3>
-			<button class="button" id="headHome">Head Home</button>
+			<button class="button" id="headHome">Close Door</button>
 		</div>
 	</div>
 
