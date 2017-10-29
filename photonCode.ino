@@ -5,6 +5,7 @@
 #define PIXEL_PIN D4
 #define PIXEL_COUNT 12
 #define PIXEL_TYPE WS2812B
+#define LED_BRIGHTNESS 50
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(PIXEL_COUNT, PIXEL_PIN, PIXEL_TYPE);
 
 //Servo Pins
@@ -29,8 +30,8 @@ int analogReadValue;
 bool openBox = false;
 
 //Constants
-#define SENSOR_MAX_IDLE 800
-#define SENSOR_MAX_OPEN 1300
+#define SENSOR_MAX_IDLE 1000
+#define SENSOR_MAX_OPEN 1500
 #define SERVO_OPEN 200
 #define SERVO_CLOSED 130
 #define NUM_MEASUREMENTS 12
@@ -65,6 +66,7 @@ void setup()
     //Functions to be called by the webpage
     Particle.function("openDoor", openDoor);
     Particle.function("closeDoor", closeDoor);
+    Particle.function("lockAllDoors", lockAllDoors);
     Particle.function("runSensor", runSensor);
 
     Serial.begin(9600);
@@ -80,7 +82,16 @@ int openDoor(String servoIndexString)
 {
     int servoIndex = atoi(servoIndexString);
     servoList[servoIndex].write(SERVO_OPEN);
-    
+
+    return 0;
+}
+
+//Called by the webpage to lock all doors, don't change LEDs
+int lockAllDoors(String servoIndexString)
+{
+    servoList[0].write(SERVO_CLOSED);
+    servoList[1].write(SERVO_CLOSED);
+
     return 0;
 }
 
@@ -88,31 +99,36 @@ int openDoor(String servoIndexString)
 int closeDoor(String servoIndexString)
 {
     int servoIndex = atoi(servoIndexString);
-    Serial.print("servoIndex ");
-    Serial.println(servoIndex);
     servoList[servoIndex].write(SERVO_CLOSED);
     
     digitalWrite(ledListGreen[servoIndex], ledOff);
     digitalWrite(ledListRed[servoIndex], ledOn);
     
-    return -1;
+    return 0;
 }
 
 //Called by the webpage to test if door can be opened
 int runSensor(String servoIndexString)
 {
-    waitForBreath();
-    toggleServo(servoIndexString);
+    if(!waitForBreath())
+    {
+        delay(3*HALF_SECOND);
+        LEDRingOff();
+        openBox = false;
+        return -1;
+    }
     
-    delay(HALF_SECOND);
+    int isUnlocked = toggleServo(servoIndexString);
+    
+    delay(3*HALF_SECOND);
     LEDRingOff();
     openBox = false;
-    return 0;
+    return isUnlocked;
 }
 
 //In standby waiting for person to breath into device. Only take valid measurents 
 //if above once measurement above min default state threshold taken
-void waitForBreath()
+bool waitForBreath()
 {
     int waitingForMeasurement = 0;
 
@@ -131,7 +147,7 @@ void waitForBreath()
             //Breathed into device, start real measurements after resetting LEDS
             LEDRingOff();
             takeMeasurements();
-            return;
+            return true;
         }
         waitingForMeasurement += 1;
         delay(HALF_SECOND);
@@ -139,6 +155,7 @@ void waitForBreath()
     
     //Failed to breath into sensor
     setLEDRed();
+    return false;
 }
 
 //Takes measurements while person breathing into sensor, tests if they are within limits
@@ -171,7 +188,7 @@ void takeMeasurements()
 }
 
 //Opens/closes servos based on result of breath sensor
-void toggleServo(String servoIndexString)
+int toggleServo(String servoIndexString)
 {
     int servoIndex = atoi(servoIndexString);
     
@@ -181,6 +198,7 @@ void toggleServo(String servoIndexString)
         servoList[servoIndex].write(SERVO_OPEN);
         digitalWrite(ledListGreen[servoIndex], ledOn);
         digitalWrite(ledListRed[servoIndex], ledOff);
+        return 0;
     }
     else if (openBox == false)
     {
@@ -189,6 +207,7 @@ void toggleServo(String servoIndexString)
         digitalWrite(ledListGreen[servoIndex], ledOff);
         digitalWrite(ledListRed[servoIndex], ledOn);
     }
+    return 1;
 }
 
 void LEDRingOff() {
@@ -201,19 +220,21 @@ void LEDRingOff() {
 void setLEDRed()
 {
     for (int i = 0; i<12; i++){
-        strip.setPixelColor(i,10,0,0);
+        strip.setPixelColor(i,LED_BRIGHTNESS,0,0);
         strip.show();
     }
 }
 
 void setLEDGreen(int index)
 {
-    strip.setPixelColor(index,0,10,0);
+    strip.setPixelColor(index,0,LED_BRIGHTNESS,0);
     strip.show();
 }
 
 void setLEDYellow(int index)
 {
-    strip.setPixelColor(index,10,10,0);
+    strip.setPixelColor(index,LED_BRIGHTNESS,LED_BRIGHTNESS,0);
     strip.show();
 }
+
+
