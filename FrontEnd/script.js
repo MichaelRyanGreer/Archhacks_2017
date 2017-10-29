@@ -155,7 +155,8 @@ document.getElementById("retBTN").addEventListener("click", function () {
 		//See status from sensor
 		//-1 --> drunk and no keys
 		//0 --> not drunk, get keys
-		getTheKeys = -1;
+
+		getTheKeys = 0;
 		if (getTheKeys === 0){
 			document.getElementById("openingLocker").innerHTML = " " + (lockerNumber + 1);
 			document.getElementById("canRetrieve").innerHTML = "Ready to open, have a safe night!"
