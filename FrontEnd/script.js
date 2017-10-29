@@ -14,8 +14,8 @@ recentDoor = null;
 var particle = new Particle();
 var token;
 
-var login = 'Email';
-var password = 'Pass';
+var login = 'email';
+var password = 'pass';
 var deviceId = 'id';  // Comes from the number in the particle.io Console
 
 function loginSuccess(data) {
@@ -103,7 +103,8 @@ document.getElementById("logout").addEventListener("click", function () {
 )
 
 document.getElementById("logout2").addEventListener("click", function () {
-	showPage("login");
+	currentUser = null;
+	showPage("landing");
 }
 )
 
@@ -120,12 +121,11 @@ document.getElementById("change1").addEventListener("click", function () {
 
 document.getElementById("headHome").addEventListener("click", function () {
 	particle.callFunction({ deviceId: deviceId, name: 'closeDoor', argument: recentDoor.toString(), auth: token });
-	recentDoor = null;
 	showPage("landing");
 }
 )
 
-document.getElementById("reqBTN2").addEventListener("click", function () {
+/*document.getElementById("reqBTN2").addEventListener("click", function () {
 	if (lockers[0] === null || lockers[1] === null){
 		showPage("request");
 		for (i = 0; i < lockers.length; i++){
@@ -134,8 +134,8 @@ document.getElementById("reqBTN2").addEventListener("click", function () {
 				document.getElementById("reqName").innerHTML = currentName;
 				lockers[i] = currentUser;
 				//FIXME open the door
-				particle.callFunction({ deviceId: deviceId, name: 'openDoor', argument: i.toString(), auth: token });
 				recentDoor = i;
+				particle.callFunction({ deviceId: deviceId, name: 'openDoor', argument: i.toString(), auth: token });
 				break;
 			}
 		}
@@ -144,9 +144,10 @@ document.getElementById("reqBTN2").addEventListener("click", function () {
 		showPage("noSpace");
 	}
 }
-)
+)*/
 
 document.getElementById("reqBTN").addEventListener("click", function () {
+	console.log(lockers.toString() + " is the array before checking if there is a null element");
 	if (lockers[0] === null || lockers[1] === null){
 		showPage("request");
 		for (i = 0; i < lockers.length; i++){
@@ -167,52 +168,62 @@ document.getElementById("reqBTN").addEventListener("click", function () {
 }
 )
 
-function getSensorData(){
-	var getTheKeys = particle.callFunction({ deviceId: deviceId, name: 'runSensor', argument: lockerNumber, auth: token });
+function getSensorData(lockerNumber){
+	var getTheKeys = particle.callFunction({ deviceId: deviceId, name: 'runSensor', argument: lockerNumber.toString(), auth: token });
 	showPage("keyReturned");
 	document.getElementById("canRetrieve").innerHTML = "Sensing..."
 	getTheKeys.then(
 		function(data){
 			var getTheKeys2 = data.body.return_value;
 			console.log(getTheKeys2 + " calling data retrieved");
-			dataRetrieve(getTheKeys2);
+			dataRetrieve(getTheKeys2,lockerNumber);
+			console.log("return function dataRetrieve");
+			return;
 		}, function (err)	{
 
 		});
 		//console.log("Returning function with sensor value: " + getTheKeys2);
-		//return getTheKeys2;
+		return;
 }
 
-function dataRetrieve(getTheKeys)	{
+function dataRetrieve(getTheKeys,lockerNumber)	{
 	console.log(getTheKeys + " Is what the function passesd");
 	if (getTheKeys === -1){
 		document.getElementById("openingLockerTryAgain").innerHTML = " " + (lockerNumber + 1);
 		document.getElementById("canRetrieveTryAgain").innerHTML = "Sensor did not detect breath. Please try again."
 		showPage("keyReturnedTryAgain");
+		console.log("return function getTheKeys");
 		return;
 	}
 	else if (getTheKeys === 0) {
-		document.getElementById("openingLocker").innerHTML = " " + (lockerNumber + 1);
-		document.getElementById("canRetrieve").innerHTML = "Grab you keys!"
-		showPage("keyReturned");
+		document.getElementById("openingLockerThenClose").innerHTML = " " + (lockerNumber + 1);
+		document.getElementById("canRetrieveThenClose").innerHTML = "Grab you keys!";
+		lockers[lockerNumber] = null;
+		showPage("keyReturnedThenClose");
+		console.log("return function getTheKeys")
 		return;
 }
 else if (getTheKeys === 1){
 	document.getElementById("openingLocker").innerHTML = " " + (lockerNumber + 1);
 	document.getElementById("canRetrieve").innerHTML = "You are too intoxicated to drive. Please find another way home."
 	showPage("keyReturned");
+	console.log("return function getTheKeys")
 	return;
 }
 else {
 showPage("noLocker");
+console.log("return function getTheKeys")
 return;
 }
+console.log("return function getTheKeys")
+return;
 }
 
 document.getElementById("retBTN").addEventListener("click", function () {
 	hasLocker = false;
 	//canRetrieve
 	lockerNumber = null;
+	console.log(lockers.toString() + ", and the current user is " + currentUser);
 	for (i = 0; i < lockers.length; i++){
 		if (lockers[i] === currentUser){
 			hasLocker = true;
@@ -220,11 +231,14 @@ document.getElementById("retBTN").addEventListener("click", function () {
 		}
 	}
 	if(hasLocker)	{
-		lockers[lockerNumber] = null;
 		//See status from sensor
 		//0 --> drunk and no keys
 		//-1 --> not drunk, get keys
-		getSensorData();
+		getSensorData(lockerNumber);
+		console.log("return function getSensorData");
+}
+else {
+showPage("noLocker");
 }
 }
 )
@@ -267,7 +281,15 @@ document.getElementById("change7").addEventListener("click", function () {
 )
 
 document.getElementById("change8").addEventListener("click", function () {
-	showPage("homePage");
+	currentUser = null;
+	showPage("landing");
+}
+)
+
+document.getElementById("change9").addEventListener("click", function () {
+	currentUser = null;
+	particle.callFunction({ deviceId: deviceId, name: 'lockAllDoors', argument: recentDoor.toString(), auth: token });
+	showPage("landing");
 }
 )
 
