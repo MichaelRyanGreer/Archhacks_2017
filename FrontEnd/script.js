@@ -45,6 +45,17 @@ function showPage(id) {
 	}
 }
 
+//document.getElementById("testNode").addEventListner("click", function() {
+//var http = require('http');
+//http.createServer(function (req, res) {
+//	res.writeHead(200, {
+//		'Content-Type': 'text/plain'
+//	});
+//	res.end('Hello World\n');
+//}).listen(3456);
+//console.log('Server running at http://localhost:3456/');
+//}
+
 document.getElementById("loginPageBTN").addEventListener("click", function () {
 	if (document.getElementById("userBarCode").value === barCode || document.getElementById("userBarName").value === barName){
 		showPage("login");
