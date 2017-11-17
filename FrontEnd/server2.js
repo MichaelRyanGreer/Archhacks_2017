@@ -2,6 +2,7 @@ var http = require('http'),
     fs = require('fs');
 
 http.createServer(function (req, res) {
+  console.log(req.url);
 
     if(req.url.indexOf('.html') != -1){ //req.url has the pathname, check if it conatins '.html'
 
@@ -25,7 +26,7 @@ http.createServer(function (req, res) {
 
     }
 
-      
+
     if(req.url.indexOf('.css') != -1){ //req.url has the pathname, check if it conatins '.css'
        fs.readFile(__dirname + './default.css', function (err, data) {
         if (err) console.log(err);
