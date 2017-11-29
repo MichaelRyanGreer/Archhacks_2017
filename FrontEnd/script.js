@@ -56,6 +56,10 @@ function showPage(id) {
 //console.log('Server running at http://localhost:3456/');
 //}
 
+//document.getElementById("testEmail").addEventListner("click",function(){
+	
+//})
+
 document.getElementById("loginPageBTN").addEventListener("click", function () {
 	if (document.getElementById("userBarCode").value === barCode || document.getElementById("userBarName").value === barName){
 		showPage("login");
