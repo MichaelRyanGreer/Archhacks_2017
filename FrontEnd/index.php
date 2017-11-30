@@ -31,12 +31,12 @@ Released   : 20140207
 	}
 </script>
 <?php
-	/*function php_func()	{
+	function php_func()	{
 		$to = "jsleshem@gmail.com";
 		$subject = "Test";
 		$Message = "Sent from PHP!";
-		bool mail ( string $to , string $subject , string $message);
-	}*/
+		mail ( string $to , string $subject , string $message);
+	}
 	function php_func(){
 		echo "Hello!";
 	}
