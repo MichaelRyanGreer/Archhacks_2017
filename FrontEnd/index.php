@@ -29,12 +29,27 @@ Released   : 20140207
 		alert (res);
 		return false;
 	}
+
+	function on_callPhp_test() {
+		console.log("Start Notification");
+		var res = "<?php php_func_test();?>";
+		alert (res);
+		return false;
+	}
 </script>
 <?php
 	function php_func()	{
 		$to = "jsleshem@gmail.com";
 		$subject = "Test";
 		$message = "Sent from PHP!";
+		mail ($to, $subject, $message);
+		echo "done";
+	}
+
+	function php_func_test()	{
+		$to = $get_username = $_POST['userNumber'];
+		$subject = "Test Your Email";
+		$message = "This confirms that your friend just signed in to Barcode! Thank you for helping your friend!";
 		mail ($to, $subject, $message);
 		echo "done";
 	}
@@ -69,10 +84,11 @@ Released   : 20140207
 		</div>
 		<form >
 				Name: <input class="inputForm" id="username" type="text"><br>
-				Phone Number: <input class="inputForm" id="userNumber" type="text"><br>
+				Contact Email: <input class="inputForm" id="userNumber" type="text"><br>
 				Pin: <input class="inputForm" id="userPin" type="password"><br>
 		</form>
 		<button class="button" id="loginBTN">Login</button>
+		<button type="submit" class="button" id="testEmail" onclick="on_callPhp_test()">Test Email Here</button>
 		<br><br><br>
 		<button class="button" id="change1">Change Bar</button>
 	</div>
