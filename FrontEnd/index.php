@@ -50,7 +50,10 @@ Released   : 20140207
 	</div>
 	<?php
 		function php_func()	{
-			echo "Hello!";
+			$to = "jsleshem@gmail.com";
+			$subject = "Test";
+			$Message = "Sent from PHP!";	
+			bool mail ( string $to , string $subject , string $message);
 		}
 	?>
 	<button type="submit" class="button" id="testEmail" onclick="on_callPhp()">Test Email Here</button>
