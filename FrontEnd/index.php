@@ -35,10 +35,8 @@ Released   : 20140207
 		$to = "jsleshem@gmail.com";
 		$subject = "Test";
 		$message = "Sent from PHP!";
-		//mail ( string $to , string $subject , string $message);
-		echo $to;
-		echo $subject;
-		echo $message;
+		mail ($to, $subject, $message);
+		echo "done";
 	}
 ?>
 </head>
