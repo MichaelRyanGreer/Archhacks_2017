@@ -36,8 +36,6 @@ Released   : 20140207
 		$subject = "Test";
 		$Message = "Sent from PHP!";
 		mail ( string $to , string $subject , string $message);
-	}
-	function php_func(){
 		echo "Hello!";
 	}
 ?>
