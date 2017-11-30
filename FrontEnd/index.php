@@ -41,7 +41,8 @@ Released   : 20140207
 	function php_func()	{
 		$to = "jsleshem@gmail.com";
 		$subject = "Test";
-		$message = "Sent from PHP!";
+		$now = time();
+		$message = "This email was sent from the homepage at " . $now . " in unix time.";
 		mail ($to, $subject, $message);
 		echo "done";
 	}
@@ -51,7 +52,8 @@ Released   : 20140207
 	function php_func_test()	{
 		$to = $get_username = $_POST['userNumber'];
 		$subject = "Test Your Email";
-		$message = "This confirms that your friend just signed in to Barcode! Thank you for helping your friend!";
+		$now = time();
+		$message = "This confirms that your friend just signed in to Barcode! Thank you for helping your friend! This was sent at " . $now . " in unix time.";
 		mail ($to, $subject, $message);
 		echo "done";
 	}
