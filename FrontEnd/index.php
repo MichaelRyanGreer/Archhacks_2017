@@ -34,9 +34,11 @@ Released   : 20140207
 	function php_func()	{
 		$to = "jsleshem@gmail.com";
 		$subject = "Test";
-		$Message = "Sent from PHP!";
+		$message = "Sent from PHP!";
 		//mail ( string $to , string $subject , string $message);
-		echo "Hello!";
+		echo $to;
+		echo $subject;
+		echo $message;
 	}
 ?>
 </head>
