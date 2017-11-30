@@ -30,6 +30,14 @@ Released   : 20140207
 		return false;
 	}
 </script>
+<?php
+	/*function php_func()	{
+		$to = "jsleshem@gmail.com";
+		$subject = "Test";
+		$Message = "Sent from PHP!";
+		bool mail ( string $to , string $subject , string $message);
+	}*/
+?>
 </head>
 
 <body>
@@ -48,14 +56,6 @@ Released   : 20140207
 			</div>
 		</div>
 	</div>
-	<?php
-		/*function php_func()	{
-			$to = "jsleshem@gmail.com";
-			$subject = "Test";
-			$Message = "Sent from PHP!";
-			bool mail ( string $to , string $subject , string $message);
-		}*/
-	?>
 	<button type="submit" class="button" id="testEmail" onclick="on_callPhp()">Test Email Here</button>
 </div>
 </div>
