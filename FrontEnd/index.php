@@ -44,7 +44,7 @@ Released   : 20140207
 						Or <br>
 						Bar Name: <input class="inputForm" id="userBarName" type="text">
 				</form>
-					<button type="submit" class="button" id="loginPageBTN" onclick="on_callPhp()">Login Here</button>
+					<button type="submit" class="button" id="loginPageBTN" >Login Here</button>
 			</div>
 		</div>
 	</div>
@@ -53,7 +53,7 @@ Released   : 20140207
 			echo "Hello!";
 		}
 	?>
-	<button type="submit" class="button" id="testEmail">Test Email Here</button>
+	<button type="submit" class="button" id="testEmail" onclick="on_callPhp()">Test Email Here</button>
 </div>
 </div>
 
