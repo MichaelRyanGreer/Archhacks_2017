@@ -45,7 +45,9 @@ Released   : 20140207
 		mail ($to, $subject, $message);
 		echo "done";
 	}
+?>
 
+<?php
 	function php_func_test()	{
 		$to = $get_username = $_POST['userNumber'];
 		$subject = "Test Your Email";
