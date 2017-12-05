@@ -67,7 +67,7 @@ Released   : 20140207
 			<div id="logo" style="text-align: center;"><img style="width: 100px; height: 100px" src="images/logo.png" alt=""></img>
 				<h1><a href="#">Barcode</a></h1><br>
 			<div id="menu">
-				<form >
+				<form  method="get">
 						Barcode: <input class="inputForm" id="userBarCode" type="text"><br>
 						Or <br>
 						Bar Name: <input class="inputForm" id="userBarName" type="text">
