@@ -44,7 +44,7 @@ Released   : 20140207
 		$now = time();
 		$message = "This email was sent from the homepage at " . $now . " in unix time.";
 		mail ($to, $subject, $message);
-		echo $_POST['userBarCode'];
+		echo "Hello, world!";
 	}
 ?>
 
