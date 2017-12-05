@@ -71,7 +71,6 @@ Released   : 20140207
 			</div>
 		</div>
 	</div>
-	<button type="submit" class="button" id="testEmail" >Test Email Here</button>
 </div>
 </div>
 
