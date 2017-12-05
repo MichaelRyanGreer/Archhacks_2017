@@ -44,7 +44,7 @@ Released   : 20140207
 		$now = time();
 		$message = "This email was sent from the homepage at " . $now . " in unix time.";
 		mail ($to, $subject, $message);
-		echo $_GET['userBarCode'];
+		echo $_POST['userBarCode'];
 	}
 ?>
 
@@ -67,8 +67,8 @@ Released   : 20140207
 			<div id="logo" style="text-align: center;"><img style="width: 100px; height: 100px" src="images/logo.png" alt=""></img>
 				<h1><a href="#">Barcode</a></h1><br>
 			<div id="menu">
-				<form  method="get">
-						Barcode: <input class="inputForm" id="userBarCode" type="text"><br>
+				<form  method="post">
+						Barcode: <input class="inputForm" name="userBarCode" id="userBarCode" type="text"><br>
 						Or <br>
 						Bar Name: <input class="inputForm" id="userBarName" type="text">
 				</form>
