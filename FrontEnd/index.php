@@ -21,25 +21,13 @@ Released   : 20140207
 <link href="fonts.css" rel="stylesheet" type="text/css" media="all" /> -->
 <link href="all.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="http://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
-<script src="jquery-3.2.1.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
 <script type="text/javascript">
 	function on_callPhp() {
-		//console.log("Start Notification");
-		//var res = "<?php php_func();?>";
-		//alert (res);
-		//return false;
-		var deleteClient = function(id) {
-    $.ajax({
-        url: 'function.php',
-        type: 'POST',
-        data: {id:id},
-        success: function(data) {
-            console.log(data); // Inspect this in your console
-        }
-    });
-};
+		console.log("Start Notification");
+		var res = "<?php php_func();?>";
+		alert (res);
+		return false;
 	}
 
 	function on_callPhp_test() {
