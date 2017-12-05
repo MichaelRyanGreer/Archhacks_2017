@@ -60,9 +60,16 @@ function showPage(id) {
 
 //})
 
-function on_callPhp() {
+document.getElementById("testEmail").addEventListner("click", function () {
   console.log("Start Notification");
   var res = "<?php php_func();?>";
+  alert (res);
+  return false;
+}
+
+function on_callPhp_alert_tender() {
+  console.log("Start Notification");
+  var res = "<?php php_alert_tender();?>";
   alert (res);
   return false;
 }

@@ -30,12 +30,7 @@ Released   : 20140207
 		//return false;
 	//}
 
-	function on_callPhp_alert_tender() {
-		console.log("Start Notification");
-		var res = "<?php php_alert_tender();?>";
-		alert (res);
-		return false;
-	}
+
 </script>
 <?php
 	function php_func()	{
@@ -76,7 +71,7 @@ Released   : 20140207
 			</div>
 		</div>
 	</div>
-	<button type="submit" class="button" id="testEmail" onclick="on_callPhp()">Test Email Here</button>
+	<button type="submit" class="button" id="testEmail" >Test Email Here</button>
 </div>
 </div>
 
