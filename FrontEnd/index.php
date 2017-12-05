@@ -30,9 +30,9 @@ Released   : 20140207
 		return false;
 	}
 
-	function on_callPhp_test() {
+	function on_callPhp_alert_tender() {
 		console.log("Start Notification");
-		var res = "<?php php_func_test();?>";
+		var res = "<?php php_alert_tender();?>";
 		alert (res);
 		return false;
 	}
@@ -49,11 +49,11 @@ Released   : 20140207
 ?>
 
 <?php
-	function php_func_test()	{
+	function php_alert_tender()	{
 		$to = $get_username = $_POST['userNumber'];
 		$subject = "Test Your Email";
 		$now = time();
-		$message = "This confirms that your friend just signed in to Barcode! Thank you for helping your friend! This was sent at " . $now . " in unix time.";
+		$message = "Someone at your bar is drunk. Please make sure that they do not drive home. This was sent at " . $now . " in unix time.";
 		mail ($to, $subject, $message);
 		echo "done";
 	}
@@ -88,11 +88,11 @@ Released   : 20140207
 		</div>
 		<form >
 				Name: <input class="inputForm" id="username" type="text"><br>
-				Contact Email: <input class="inputForm" id="userNumber" type="text"><br>
+				Phone Number: <input class="inputForm" id="userNumber" type="text"><br>
 				Pin: <input class="inputForm" id="userPin" type="password"><br>
 		</form>
 		<button class="button" id="loginBTN">Login</button>
-		<button type="submit" class="button" id="testEmail" onclick="on_callPhp_test()">Test Email Here</button>
+		<button type="submit" class="button" id="testEmail" >Test Email Here</button>
 		<br><br><br>
 		<button class="button" id="change1">Change Bar</button>
 	</div>
@@ -127,7 +127,7 @@ Released   : 20140207
 				<h3 id="canRetrieve"></h3>
 			</div>
 			<br><br><br>
-			<button class="button" id="change6">Logout</button>
+			<button class="button" type = "submit" id="change6" onclick="on_callPhp_alert_tender()">Logout</button>
 		</div>
 	</div>
 
@@ -138,7 +138,7 @@ Released   : 20140207
 				<h3 id="canRetrieveTryAgain"></h3>
 			</div>
 			<br><br><br>
-			<button class="button" id="change8">Try Again</button>
+			<button type="submit" class="button" id="change8">Try Again</button>
 		</div>
 	</div>
 
@@ -211,59 +211,6 @@ Released   : 20140207
 		</div>
 	</div>
 
-
-<!-- this is some garbage
-	<div class="page" id="wrapper3">
-		<div id="portfolio" class="container">
-			<div class="title">
-				<h2>Vivamus fermentum nibh</h2>
-				<span class="byline">Integer sit amet pede vel arcu aliquet pretium</span> </div>
-			<div class="column1">
-				<div class="box">
-					<span class="icon icon-wrench"></span>
-					<h3>Vestibulum venenatis</h3>
-					<p>Fermentum nibh augue praesent a lacus at urna congue rutrum.</p>
-					<a href="#" class="button button-small">Etiam posuere</a> </div>
-			</div>
-			<div class="column2">
-				<div class="box">
-					<span class="icon icon-trophy"></span>
-					<h3>Praesent scelerisque</h3>
-					<p>Vivamus fermentum nibh in augue praesent urna congue rutrum.</p>
-					<a href="#" class="button button-small">Etiam posuere</a> </div>
-			</div>
-			<div class="column3">
-				<div class="box">
-					<span class="icon icon-key"></span>
-					<h3>Donec dictum metus</h3>
-					<p>Vivamus fermentum nibh in augue praesent urna congue rutrum.</p>
-					<a href="#" class="button button-small">Etiam posuere</a> </div>
-			</div>
-			<div class="column4">
-				<div class="box">
-					<span class="icon icon-lock"></span>
-					<h3>Mauris vulputate dolor</h3>
-					<p>Rutrum fermentum nibh in augue praesent urna congue rutrum.</p>
-					<a href="#" class="button button-small">Etiam posuere</a> </div>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-<div id="footer" class="page" class="container">
-	<div class="title">
-		<h2>Get in touch</h2>
-		<span class="byline">Phasellus nec erat sit amet nibh pellentesque congue</span> </div>
-	<ul class="contact">
-		<li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
-		<li><a href="#" class="icon icon-facebook"><span></span></a></li>
-		<li><a href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
-		<li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
-		<li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
-	</ul>
-</div>
--->
 <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
