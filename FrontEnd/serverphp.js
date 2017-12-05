@@ -4,7 +4,7 @@ var http = require('http'),
 http.createServer(function (req, res) {
   console.log(req.url);
 
-    if(req.url.indexOf('.html') != -1){ //req.url has the pathname, check if it conatins '.html'
+    if(req.url.indexOf('.php') != -1){ //req.url has the pathname, check if it conatins '.html'
 
       fs.readFile(__dirname + '/index.php', function (err, data) {
         if (err) console.log(err);
