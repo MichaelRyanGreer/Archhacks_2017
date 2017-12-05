@@ -57,8 +57,16 @@ function showPage(id) {
 //}
 
 //document.getElementById("testEmail").addEventListner("click",function(){
-	
+
 //})
+
+function on_callPhp() {
+  console.log("Start Notification");
+  var res = "<?php php_func();?>";
+  alert (res);
+  return false;
+}
+
 
 document.getElementById("loginPageBTN").addEventListener("click", function () {
 	if (document.getElementById("userBarCode").value === barCode || document.getElementById("userBarName").value === barName){

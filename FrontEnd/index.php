@@ -23,12 +23,12 @@ Released   : 20140207
 <script type="text/javascript" src="http://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
 <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
 <script type="text/javascript">
-	function on_callPhp() {
-		console.log("Start Notification");
-		var res = "<?php php_func();?>";
-		alert (res);
-		return false;
-	}
+	//function on_callPhp() {
+		//console.log("Start Notification");
+		//var res = "<?php php_func();?>";
+		//alert (res);
+		//return false;
+	//}
 
 	function on_callPhp_alert_tender() {
 		console.log("Start Notification");
