@@ -46,12 +46,14 @@ function showPage(id) {
 }
 
 //This calls one of the PHP functions
+/*
 document.getElementById("testEmail").addEventListner("click", function () {
   console.log("Start Notification");
   var res = "<?php php_func();?>";
   alert (res);
   return false;
 });
+*/
 
 // This calls the other PHP function
 
@@ -74,8 +76,7 @@ document.getElementById("loginPageBTN").addEventListener("click", function () {
 	}
 	document.getElementById("userBarCode").value = "";
 	document.getElementById("userBarName").value = "";
-}
-);
+});
 
 // LOcker check out logic
 document.getElementById("loginBTN").addEventListener("click", function () {
