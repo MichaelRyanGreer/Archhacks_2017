@@ -33,7 +33,6 @@
 ?>
 </head>
 
-0
 <!-- First DIV to represent the homepage-->
 <body>
 <div class="page" id="landing">
