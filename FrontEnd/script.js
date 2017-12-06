@@ -32,8 +32,7 @@ particle.login({username: login, password:password}).then(loginSuccess, loginErr
 
 //This function was built to navigate the page through showing all of the different pages
 function showPage(id) {
-	//document.getElementsByClassName("inputForm").value = "";
-	console.log(id + " is the page loading");
+	//console.log(id + " is the page loading"); // can be used for easier navigation
 	if (id == "login") {
 		currentUser = null;
 	}
@@ -193,12 +192,12 @@ function getSensorData(lockerNumber){
 
 //This lets the user know if they failed or passed the breathalyzer
 function dataRetrieve(getTheKeys,lockerNumber)	{
-	console.log(getTheKeys + " Is what the function passesd");
+	console.log(getTheKeys + " Is what the function passed");
 	if (getTheKeys === -1){
 		document.getElementById("openingLockerTryAgain").innerHTML = " " + (lockerNumber + 1);
 		document.getElementById("canRetrieveTryAgain").innerHTML = "Sensor did not detect breath. Please try again."
 		showPage("keyReturnedTryAgain");
-		console.log("return function getTheKeys");
+		console.log("return function getTheKeys with value -1");
 		return;
 	}
   //This is when they pass and can get kesy
@@ -207,7 +206,7 @@ function dataRetrieve(getTheKeys,lockerNumber)	{
 		document.getElementById("canRetrieveThenClose").innerHTML = "Grab you keys!";
 		lockers[lockerNumber] = null;
 		showPage("keyReturnedThenClose");
-		console.log("return function getTheKeys");
+		console.log("return function getTheKeys with value 0");
 		return;
 }
 // This is when the user fails ans neds to find a ride home
@@ -220,15 +219,15 @@ else if (getTheKeys === 1){
   console.log("The php function has been called");
 	document.getElementById("canRetrieve").innerHTML = "You are too intoxicated to drive. Please find another way home.";
 	showPage("keyReturned");
-	console.log("return function getTheKeys")
+	console.log("return function getTheKeys with value 1")
 	return;
 }
 else {
 showPage("noLocker");
-console.log("return function getTheKeys")
+console.log("return function getTheKeys with value ?")
 return;
 }
-console.log("return function getTheKeys")
+console.log("return function getTheKeys with value ???")
 return;
 }
 
