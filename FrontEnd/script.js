@@ -286,6 +286,7 @@ document.getElementById("change5").addEventListener("click", function () {
 
 document.getElementById("change6").addEventListener("click", function () {
 	currentUser = null;
+  on_callPhp_alert_tender();
 	showPage("landing");
 }
 )
