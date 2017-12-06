@@ -23,8 +23,8 @@
 
 <?php
 	function php_alert_tender()	{
-		$to = $get_username = "jsleshem@gmail.com";
-		$subject = "Test Your Email";
+		$to = "jsleshem@gmail.com";
+		$subject = "Drunk Client!";
 		$now = time();
 		$message = "Someone at your bar is drunk. Please make sure that they do not drive home. This was sent at " . $now . " in unix time.";
 		mail ($to, $subject, $message);
