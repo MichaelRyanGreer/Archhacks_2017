@@ -195,7 +195,7 @@
 	</div>
 
 <!-- Link the JS-->
-<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="realscript.js"></script>
 </body>
 </html>
 <!--
