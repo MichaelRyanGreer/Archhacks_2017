@@ -10,6 +10,11 @@
 <link href="all.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="http://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
 <!-- These are the PHP scripts that I use to send mail -->
+</head>
+
+
+
+<body>
 <?php
 	function php_func()	{
 		$to = "jsleshem@gmail.com";
@@ -31,10 +36,7 @@
 		echo "done";
 	}
 ?>
-</head>
-
 <!-- First DIV to represent the homepage-->
-<body>
 <div class="page" id="landing">
 	<div id="header-wrapper">
 		<div id="header" class="container">
