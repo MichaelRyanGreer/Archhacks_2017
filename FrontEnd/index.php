@@ -43,7 +43,7 @@ function on_callPhp_alert_tender() {
 		$now = time();
 		$message = "Someone at your bar is drunk. Please make sure that they do not drive home. This was sent at " . $now . " in unix time.";
 		mail ($to, $subject, $message);
-		echo "done";
+		//echo "done";
 	}
 ?>
 <!-- First DIV to represent the homepage-->

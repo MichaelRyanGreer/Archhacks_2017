@@ -141,7 +141,7 @@ document.getElementById("headHome").addEventListener("click", function () {
 	showPage("landing");
 }
 );
-//php_alert_tender
+
 
 // Finds the correct locker that is in use
 //Assigns proper Number//Then returns to open or close
@@ -184,14 +184,6 @@ function getSensorData(lockerNumber){
 		});
 		return;
 }
-
-// This calls the other PHP function
-/*function on_callPhp_alert_tender() {
-  console.log("Start Notification");
-  var res = "<?php php_alert_tender();?>";
-  alert (res);
-  return false;
-}*/
 
 //This lets the user know if they failed or passed the breathalyzer
 function dataRetrieve(getTheKeys,lockerNumber)	{
