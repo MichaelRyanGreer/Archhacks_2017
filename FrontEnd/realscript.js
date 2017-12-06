@@ -55,14 +55,6 @@ document.getElementById("testEmail").addEventListner("click", function () {
 });
 */
 
-// This calls the other PHP function
-
-function on_callPhp_alert_tender() {
-  console.log("Start Notification");
-  var res = "<?php php_alert_tender();?>";
-  alert (res);
-  return false;
-}
 
 
 // Checks to see if bar exists, then logs into bar
@@ -193,6 +185,14 @@ function getSensorData(lockerNumber){
 		return;
 }
 
+// This calls the other PHP function
+/*function on_callPhp_alert_tender() {
+  console.log("Start Notification");
+  var res = "<?php php_alert_tender();?>";
+  alert (res);
+  return false;
+}*/
+
 //This lets the user know if they failed or passed the breathalyzer
 function dataRetrieve(getTheKeys,lockerNumber)	{
 	console.log(getTheKeys + " Is what the function passed");
@@ -215,10 +215,12 @@ function dataRetrieve(getTheKeys,lockerNumber)	{
 // This is when the user fails ans neds to find a ride home
 else if (getTheKeys === 1){
 	document.getElementById("openingLocker").innerHTML = " " + (lockerNumber + 1);
+
   console.log("The php function is about to be called");
   on_callPhp_alert_tender();
   console.log("The php function has been called");
 	document.getElementById("canRetrieve").innerHTML = "You are too intoxicated to drive. Please find another way home.";
+
 	showPage("keyReturned");
 	console.log("return function getTheKeys with value 1");
 	return;

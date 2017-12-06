@@ -9,6 +9,14 @@
 <link href="http://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
 <link href="all.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="http://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
+<script type="text/javascript">
+function on_callPhp_alert_tender() {
+  console.log("Start Notification");
+  var res = "<?php php_alert_tender();?>";
+  alert (res);
+  return false;
+}
+</script>
 <!-- These are the PHP scripts that I use to send mail -->
 </head>
 
