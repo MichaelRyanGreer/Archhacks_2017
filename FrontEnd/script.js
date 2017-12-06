@@ -214,7 +214,9 @@ function dataRetrieve(getTheKeys,lockerNumber)	{
 else if (getTheKeys === 1){
 	document.getElementById("openingLocker").innerHTML = " " + (lockerNumber + 1);
 	document.getElementById("canRetrieve").innerHTML = "You are too intoxicated to drive. Please find another way home.";
+  console.log("Send Email function call");
   on_callPhp_alert_tender();
+  console.log("Send Email function returned");
 	showPage("keyReturned");
 	console.log("return function getTheKeys")
 	return;
