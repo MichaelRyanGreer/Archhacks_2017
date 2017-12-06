@@ -213,10 +213,10 @@ function dataRetrieve(getTheKeys,lockerNumber)	{
 // This is when the user fails ans neds to find a ride home
 else if (getTheKeys === 1){
 	document.getElementById("openingLocker").innerHTML = " " + (lockerNumber + 1);
-	document.getElementById("canRetrieve").innerHTML = "You are too intoxicated to drive. Please find another way home.";
-  console.log("Send Email function call");
+  console.log("The php function is about to be called");
   on_callPhp_alert_tender();
-  console.log("Send Email function returned");
+  console.log("The php function has been called");
+	document.getElementById("canRetrieve").innerHTML = "You are too intoxicated to drive. Please find another way home.";
 	showPage("keyReturned");
 	console.log("return function getTheKeys")
 	return;
@@ -286,9 +286,6 @@ document.getElementById("change5").addEventListener("click", function () {
 
 document.getElementById("change6").addEventListener("click", function () {
 	currentUser = null;
-  console.log("The php function is about to be called");
-  on_callPhp_alert_tender();
-  console.log("The php function has been called");
 	showPage("landing");
 }
 )
