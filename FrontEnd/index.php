@@ -102,7 +102,7 @@
 				<h3 id="canRetrieve"></h3>
 			</div>
 			<br><br><br>
-			<button class="button" type = "submit" id="change6">Logout</button>
+			<button class="button" type="submit" id="change6">321321Logout</button>
 		</div>
 	</div>
 
