@@ -207,14 +207,16 @@ function dataRetrieve(getTheKeys,lockerNumber)	{
 		document.getElementById("canRetrieveThenClose").innerHTML = "Grab you keys!";
 		lockers[lockerNumber] = null;
 		showPage("keyReturnedThenClose");
-		console.log("return function getTheKeys")
+		console.log("return function getTheKeys");
 		return;
 }
 // This is when the user fails ans neds to find a ride home
 else if (getTheKeys === 1){
 	document.getElementById("openingLocker").innerHTML = " " + (lockerNumber + 1);
   console.log("The php function is about to be called");
-  on_callPhp_alert_tender();
+
+  var res = "<?php php_alert_tender();?>";
+
   console.log("The php function has been called");
 	document.getElementById("canRetrieve").innerHTML = "You are too intoxicated to drive. Please find another way home.";
 	showPage("keyReturned");
