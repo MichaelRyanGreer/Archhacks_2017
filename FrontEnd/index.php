@@ -15,6 +15,7 @@
 
 
 <body>
+	<!--
 <?php
 	function php_func()	{
 		$to = "jsleshem@gmail.com";
@@ -25,6 +26,7 @@
 		echo "Hello, world!";
 	}
 ?>
+-->
 
 <?php
 	function php_alert_tender()	{

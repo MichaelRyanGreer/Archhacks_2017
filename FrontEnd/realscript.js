@@ -216,9 +216,7 @@ function dataRetrieve(getTheKeys,lockerNumber)	{
 else if (getTheKeys === 1){
 	document.getElementById("openingLocker").innerHTML = " " + (lockerNumber + 1);
   console.log("The php function is about to be called");
-
-  var res = "<?php php_alert_tender();?>";
-
+  on_callPhp_alert_tender();
   console.log("The php function has been called");
 	document.getElementById("canRetrieve").innerHTML = "You are too intoxicated to drive. Please find another way home.";
 	showPage("keyReturned");
