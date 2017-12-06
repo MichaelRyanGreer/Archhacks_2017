@@ -102,7 +102,7 @@
 				<h3 id="canRetrieve"></h3>
 			</div>
 			<br><br><br>
-			<button class="button" type = "submit" id="change6" onclick="on_callPhp_alert_tender()">Logout</button>
+			<button class="button" type = "submit" id="change6">Logout</button>
 		</div>
 	</div>
 
