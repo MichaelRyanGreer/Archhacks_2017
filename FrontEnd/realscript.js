@@ -6,7 +6,7 @@ var userAll = [];
 var userNumbers = [];
 lockers.push(null);
 lockers.push(null);
-barName = "Puzzles" //Default bar we have
+barName = "Puzzles"; //Default bar we have
 barCode = "0001";
 var currentUser = null;
 recentDoor = null;
@@ -51,15 +51,17 @@ document.getElementById("testEmail").addEventListner("click", function () {
   var res = "<?php php_func();?>";
   alert (res);
   return false;
-}
+});
 
 // This calls the other PHP function
+
 function on_callPhp_alert_tender() {
   console.log("Start Notification");
   var res = "<?php php_alert_tender();?>";
   alert (res);
   return false;
 }
+
 
 // Checks to see if bar exists, then logs into bar
 document.getElementById("loginPageBTN").addEventListener("click", function () {
@@ -73,14 +75,14 @@ document.getElementById("loginPageBTN").addEventListener("click", function () {
 	document.getElementById("userBarCode").value = "";
 	document.getElementById("userBarName").value = "";
 }
-)
+);
 
 // LOcker check out logic
 document.getElementById("loginBTN").addEventListener("click", function () {
-	currentUser = document.getElementById("username").value + document.getElementById("userPin").value + document.getElementById("userNumber").value
-	currentName = document.getElementById("username").value
-	currentNumber = document.getElementById("userNumber").value
-	var exists = false
+	currentUser = document.getElementById("username").value + document.getElementById("userPin").value + document.getElementById("userNumber").value;
+	currentName = document.getElementById("username").value;
+	currentNumber = document.getElementById("userNumber").value;
+	var exists = false;
   // checks to see if there is an open locer
 	for (i = 0; i < userNames.length; i++){
 		if(userNames[i] === currentName && userNumbers[i] === currentNumber){
@@ -115,37 +117,37 @@ document.getElementById("loginBTN").addEventListener("click", function () {
 	document.getElementById("userPin").value = "";
 	document.getElementById("userNumber").value = "";
 }
-)
+);
 
 //These functions all handle relocations from around the webpage
 //Start
 document.getElementById("logout").addEventListener("click", function () {
 	showPage("login");
 }
-)
+);
 
 document.getElementById("logout2").addEventListener("click", function () {
 	currentUser = null;
 	showPage("landing");
 }
-)
+);
 
 document.getElementById("requestConfirm").addEventListener("click", function () {
 	showPage("requestConfirmPage");
 }
-)
+);
 
 document.getElementById("change1").addEventListener("click", function () {
 	currentUser = null;
 	showPage("landing");
 }
-)
+);
 
 document.getElementById("headHome").addEventListener("click", function () {
 	particle.callFunction({ deviceId: deviceId, name: 'closeDoor', argument: recentDoor.toString(), auth: token });
 	showPage("landing");
 }
-)
+);
 //php_alert_tender
 
 // Finds the correct locker that is in use
@@ -170,13 +172,13 @@ document.getElementById("reqBTN").addEventListener("click", function () {
 		showPage("noSpace");
 	}
 }
-)
+);
 
 //gets the sensor data from the particle on the ethanol sensor
 function getSensorData(lockerNumber){
 	var getTheKeys = particle.callFunction({ deviceId: deviceId, name: 'runSensor', argument: lockerNumber.toString(), auth: token });
 	showPage("keyReturned");
-	document.getElementById("canRetrieve").innerHTML = "Sensing..."
+	document.getElementById("canRetrieve").innerHTML = "Sensing...";
 	getTheKeys.then(
 		function(data){
 			var getTheKeys2 = data.body.return_value;
@@ -195,7 +197,7 @@ function dataRetrieve(getTheKeys,lockerNumber)	{
 	console.log(getTheKeys + " Is what the function passed");
 	if (getTheKeys === -1){
 		document.getElementById("openingLockerTryAgain").innerHTML = " " + (lockerNumber + 1);
-		document.getElementById("canRetrieveTryAgain").innerHTML = "Sensor did not detect breath. Please try again."
+		document.getElementById("canRetrieveTryAgain").innerHTML = "Sensor did not detect breath. Please try again.";
 		showPage("keyReturnedTryAgain");
 		console.log("return function getTheKeys with value -1");
 		return;
@@ -219,15 +221,15 @@ else if (getTheKeys === 1){
   console.log("The php function has been called");
 	document.getElementById("canRetrieve").innerHTML = "You are too intoxicated to drive. Please find another way home.";
 	showPage("keyReturned");
-	console.log("return function getTheKeys with value 1")
+	console.log("return function getTheKeys with value 1");
 	return;
 }
 else {
 showPage("noLocker");
-console.log("return function getTheKeys with value ?")
+console.log("return function getTheKeys with value ?");
 return;
 }
-console.log("return function getTheKeys with value ???")
+console.log("return function getTheKeys with value ???");
 return;
 }
 
@@ -257,7 +259,7 @@ else {
 showPage("noLocker");
 }
 }
-)
+);
 
 // The rest of the functions are used to redirect, or for the test page
 //Excluding one
@@ -265,43 +267,43 @@ document.getElementById("change2").addEventListener("click", function () {
 	currentUser = null;
 	showPage("landing");
 }
-)
+);
 
 document.getElementById("change3").addEventListener("click", function () {
 	currentUser = null;
 	showPage("landing");
 }
-)
+);
 
 document.getElementById("change4").addEventListener("click", function () {
 	currentUser = null;
 	showPage("landing");
 }
-)
+);
 
 document.getElementById("change5").addEventListener("click", function () {
 	currentUser = null;
 	showPage("landing");
 }
-)
+);
 
 document.getElementById("change6").addEventListener("click", function () {
 	currentUser = null;
 	showPage("landing");
 }
-)
+);
 
 document.getElementById("change7").addEventListener("click", function () {
 	currentUser = null;
 	showPage("login");
 }
-)
+);
 
 document.getElementById("change8").addEventListener("click", function () {
 	currentUser = null;
 	showPage("landing");
 }
-)
+);
 
 // This is my "reset hardware" function in the software side
 document.getElementById("change9").addEventListener("click", function () {
@@ -309,6 +311,6 @@ document.getElementById("change9").addEventListener("click", function () {
 	particle.callFunction({ deviceId: deviceId, name: 'lockAllDoors', argument: recentDoor.toString(), auth: token });
 	showPage("landing");
 }
-)
+);
 
 showPage("landing");
