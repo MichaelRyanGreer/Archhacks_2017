@@ -49,7 +49,7 @@ void setup()
     servoList[0].write(SERVO_CLOSED);
     servoList[1].attach(servoOutPin1);
     servoList[1].write(SERVO_CLOSED);
-    
+
     //Initialize LED pins to available green
     for(int i = 0; i < LED_LIST_LENGTH; i++)
     {
@@ -58,11 +58,11 @@ void setup()
         digitalWrite(ledListGreen[i], ledOn);
         digitalWrite(ledListRed[i], ledOff);
     }
-    
+
     //Sets up the Neopixel ring to start off
     strip.begin();
     strip.show();
-    
+
     //Functions to be called by the webpage
     Particle.function("openDoor", openDoor);
     Particle.function("closeDoor", closeDoor);
@@ -100,10 +100,10 @@ int closeDoor(String servoIndexString)
 {
     int servoIndex = atoi(servoIndexString);
     servoList[servoIndex].write(SERVO_CLOSED);
-    
+
     digitalWrite(ledListGreen[servoIndex], ledOff);
     digitalWrite(ledListRed[servoIndex], ledOn);
-    
+
     return 0;
 }
 
@@ -117,16 +117,16 @@ int runSensor(String servoIndexString)
         openBox = false;
         return -1;
     }
-    
+
     int isUnlocked = toggleServo(servoIndexString);
-    
+
     delay(3*HALF_SECOND);
     LEDRingOff();
     openBox = false;
     return isUnlocked;
 }
 
-//In standby waiting for person to breath into device. Only take valid measurents 
+//In standby waiting for person to breath into device. Only take valid measurents
 //if above once measurement above min default state threshold taken
 bool waitForBreath()
 {
@@ -136,7 +136,7 @@ bool waitForBreath()
     {
         analogReadValue = analogRead(gasAnalogIn);
         Serial.println(analogReadValue);
-        
+
         if(analogReadValue < SENSOR_MAX_IDLE)
         {
             //Havent breathed into device yet, set LEDs yellow for standby
@@ -152,7 +152,7 @@ bool waitForBreath()
         waitingForMeasurement += 1;
         delay(HALF_SECOND);
     }
-    
+
     //Failed to breath into sensor
     setLEDRed();
     return false;
@@ -181,17 +181,17 @@ void takeMeasurements()
             openBox = false;
             break;
         }
-        
+
         measurementNum += 1;
         delay(HALF_SECOND);
-    }   
+    }
 }
 
 //Opens/closes servos based on result of breath sensor
 int toggleServo(String servoIndexString)
 {
     int servoIndex = atoi(servoIndexString);
-    
+
     if (openBox == true)
     {
         Serial.println("OPEN");
@@ -210,6 +210,7 @@ int toggleServo(String servoIndexString)
     return 1;
 }
 
+// Turns on/off the LED ring that I use
 void LEDRingOff() {
     for (int i = 0; i<12; i++){
         strip.setPixelColor(i,0,0,0);
@@ -217,6 +218,7 @@ void LEDRingOff() {
     }
 }
 
+// Sets an LED to red
 void setLEDRed()
 {
     for (int i = 0; i<12; i++){
@@ -225,16 +227,16 @@ void setLEDRed()
     }
 }
 
+// Sets an LED to green
 void setLEDGreen(int index)
 {
     strip.setPixelColor(index,0,LED_BRIGHTNESS,0);
     strip.show();
 }
 
+//Sets an LED to yellow
 void setLEDYellow(int index)
 {
     strip.setPixelColor(index,LED_BRIGHTNESS,LED_BRIGHTNESS,0);
     strip.show();
 }
-
-

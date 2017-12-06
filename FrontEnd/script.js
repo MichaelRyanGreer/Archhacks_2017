@@ -6,16 +6,16 @@ var userAll = [];
 var userNumbers = [];
 lockers.push(null);
 lockers.push(null);
-barName = "Puzzles"
+barName = "Puzzles" //Default bar we have
 barCode = "0001";
 var currentUser = null;
 recentDoor = null;
 
-var particle = new Particle();
+var particle = new Particle(); //establish particle object
 var token;
 
-var login = 'michaelryangreer@gmail.com';
-var password = 'HelloWorld1';
+var login = 'michaelryangreer@gmail.com'; // Borrowing MIchaels particle, because I was using mine for a lab
+var password = 'HelloWorld1'; // Will be changed after demo
 var deviceId = '2d0029000847343232363230';  // Comes from the number in the particle.io Console
 
 function loginSuccess(data) {
@@ -27,9 +27,10 @@ function loginError(error) {
     console.log('API call completed on promise fail: ', error);
 }
 
-particle.login({username: login, password:password}).then(loginSuccess, loginError);
+particle.login({username: login, password:password}).then(loginSuccess, loginError); // log into particle
 
 
+//This function was built to navigate the page through showing all of the different pages
 function showPage(id) {
 	//document.getElementsByClassName("inputForm").value = "";
 	console.log(id + " is the page loading");
@@ -45,21 +46,7 @@ function showPage(id) {
 	}
 }
 
-//document.getElementById("testNode").addEventListner("click", function() {
-//var http = require('http');
-//http.createServer(function (req, res) {
-//	res.writeHead(200, {
-//		'Content-Type': 'text/plain'
-//	});
-//	res.end('Hello World\n');
-//}).listen(3456);
-//console.log('Server running at http://localhost:3456/');
-//}
-
-//document.getElementById("testEmail").addEventListner("click",function(){
-
-//})
-
+//This calls one of the PHP functions
 document.getElementById("testEmail").addEventListner("click", function () {
   console.log("Start Notification");
   var res = "<?php php_func();?>";
@@ -67,6 +54,7 @@ document.getElementById("testEmail").addEventListner("click", function () {
   return false;
 }
 
+// This calls the other PHP function
 function on_callPhp_alert_tender() {
   console.log("Start Notification");
   var res = "<?php php_alert_tender();?>";
@@ -74,7 +62,7 @@ function on_callPhp_alert_tender() {
   return false;
 }
 
-
+// Checks to see if bar exists, then logs into bar
 document.getElementById("loginPageBTN").addEventListener("click", function () {
 	if (document.getElementById("userBarCode").value === barCode || document.getElementById("userBarName").value === barName){
 		showPage("login");
@@ -88,11 +76,13 @@ document.getElementById("loginPageBTN").addEventListener("click", function () {
 }
 )
 
+// LOcker check out logic
 document.getElementById("loginBTN").addEventListener("click", function () {
 	currentUser = document.getElementById("username").value + document.getElementById("userPin").value + document.getElementById("userNumber").value
 	currentName = document.getElementById("username").value
 	currentNumber = document.getElementById("userNumber").value
 	var exists = false
+  // checks to see if there is an open locer
 	for (i = 0; i < userNames.length; i++){
 		if(userNames[i] === currentName && userNumbers[i] === currentNumber){
 			exists = true;
@@ -111,6 +101,7 @@ document.getElementById("loginBTN").addEventListener("click", function () {
 			}
 		}
 	}
+  //Gives the user a locker
 	if (!exists){
 		userNames.push(currentName);
 		userNumbers.push(currentNumber);
@@ -127,6 +118,8 @@ document.getElementById("loginBTN").addEventListener("click", function () {
 }
 )
 
+//These functions all handle relocations from around the webpage
+//Start
 document.getElementById("logout").addEventListener("click", function () {
 	showPage("login");
 }
@@ -154,28 +147,10 @@ document.getElementById("headHome").addEventListener("click", function () {
 	showPage("landing");
 }
 )
+//php_alert_tender
 
-/*document.getElementById("reqBTN2").addEventListener("click", function () {
-	if (lockers[0] === null || lockers[1] === null){
-		showPage("request");
-		for (i = 0; i < lockers.length; i++){
-			if (lockers[i] === null){
-				document.getElementById("boxNumDisplay").innerHTML = i + 1;
-				document.getElementById("reqName").innerHTML = currentName;
-				lockers[i] = currentUser;
-				//FIXME open the door
-				recentDoor = i;
-				particle.callFunction({ deviceId: deviceId, name: 'openDoor', argument: i.toString(), auth: token });
-				break;
-			}
-		}
-	}
-	else{
-		showPage("noSpace");
-	}
-}
-)*/
-
+// Finds the correct locker that is in use
+//Assigns proper Number//Then returns to open or close
 document.getElementById("reqBTN").addEventListener("click", function () {
 	console.log(lockers.toString() + " is the array before checking if there is a null element");
 	if (lockers[0] === null || lockers[1] === null){
@@ -198,6 +173,7 @@ document.getElementById("reqBTN").addEventListener("click", function () {
 }
 )
 
+//gets the sensor data from the particle on the ethanol sensor
 function getSensorData(lockerNumber){
 	var getTheKeys = particle.callFunction({ deviceId: deviceId, name: 'runSensor', argument: lockerNumber.toString(), auth: token });
 	showPage("keyReturned");
@@ -212,10 +188,10 @@ function getSensorData(lockerNumber){
 		}, function (err)	{
 
 		});
-		//console.log("Returning function with sensor value: " + getTheKeys2);
 		return;
 }
 
+//This lets the user know if they failed or passed the breathalyzer
 function dataRetrieve(getTheKeys,lockerNumber)	{
 	console.log(getTheKeys + " Is what the function passesd");
 	if (getTheKeys === -1){
@@ -225,6 +201,7 @@ function dataRetrieve(getTheKeys,lockerNumber)	{
 		console.log("return function getTheKeys");
 		return;
 	}
+  //This is when they pass and can get kesy
 	else if (getTheKeys === 0) {
 		document.getElementById("openingLockerThenClose").innerHTML = " " + (lockerNumber + 1);
 		document.getElementById("canRetrieveThenClose").innerHTML = "Grab you keys!";
@@ -233,9 +210,11 @@ function dataRetrieve(getTheKeys,lockerNumber)	{
 		console.log("return function getTheKeys")
 		return;
 }
+// This is when the user fails ans neds to find a ride home
 else if (getTheKeys === 1){
 	document.getElementById("openingLocker").innerHTML = " " + (lockerNumber + 1);
-	document.getElementById("canRetrieve").innerHTML = "You are too intoxicated to drive. Please find another way home."
+	document.getElementById("canRetrieve").innerHTML = "You are too intoxicated to drive. Please find another way home.";
+  on_callPhp_alert_tender();
 	showPage("keyReturned");
 	console.log("return function getTheKeys")
 	return;
@@ -248,6 +227,10 @@ return;
 console.log("return function getTheKeys")
 return;
 }
+
+
+
+
 
 document.getElementById("retBTN").addEventListener("click", function () {
 	hasLocker = false;
@@ -273,7 +256,8 @@ showPage("noLocker");
 }
 )
 
-
+// The rest of the functions are used to redirect, or for the test page
+//Excluding one
 document.getElementById("change2").addEventListener("click", function () {
 	currentUser = null;
 	showPage("landing");
@@ -316,6 +300,7 @@ document.getElementById("change8").addEventListener("click", function () {
 }
 )
 
+// This is my "reset hardware" function in the software side
 document.getElementById("change9").addEventListener("click", function () {
 	currentUser = null;
 	particle.callFunction({ deviceId: deviceId, name: 'lockAllDoors', argument: recentDoor.toString(), auth: token });

@@ -1,15 +1,5 @@
 <!DOCTYPE html>
-<!--
-Design by TEMPLATED
-http://templated.co
-Released for free under the Creative Commons Attribution License
 
-Name       : Embellished
-Description: A two-column, fixed-width design with dark color scheme.
-Version    : 1.0
-Released   : 20140207
-
--->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -17,21 +7,9 @@ Released   : 20140207
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="http://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
-<!-- <link href="default.css" rel="stylesheet" type="text/css" media="all" />
-<link href="fonts.css" rel="stylesheet" type="text/css" media="all" /> -->
 <link href="all.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="http://cdn.jsdelivr.net/particle-api-js/5/particle.min.js"></script>
-<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
-<script type="text/javascript">
-	//function on_callPhp() {
-		//console.log("Start Notification");
-		//var res = "<?php php_func();?>";
-		//alert (res);
-		//return false;
-	//}
-
-
-</script>
+<!-- These are the PHP scripts that I use to send mail -->
 <?php
 	function php_func()	{
 		$to = "jsleshem@gmail.com";
@@ -55,6 +33,8 @@ Released   : 20140207
 ?>
 </head>
 
+0
+<!-- First DIV to represent the homepage-->
 <body>
 <div class="page" id="landing">
 	<div id="header-wrapper">
@@ -74,7 +54,7 @@ Released   : 20140207
 </div>
 </div>
 
-
+<!-- Div to represent the current Bar -->
 <div class="page" id="login">
 	<div id="welcome" class="container">
 		<div class="title">
@@ -86,12 +66,12 @@ Released   : 20140207
 				Pin: <input class="inputForm" id="userPin" type="password"><br>
 		</form>
 		<button class="button" id="loginBTN">Login</button>
-		<button type="submit" class="button" id="testEmail" >Test Email Here</button>
 		<br><br><br>
 		<button class="button" id="change1">Change Bar</button>
 	</div>
 </div>
 
+<!--Div to represent the user main page -->
 	<div class="page" id="homePage">
 		<div id="welcome" class="container">
 			<div class="title">
@@ -105,6 +85,7 @@ Released   : 20140207
 		</div>
 	</div>
 
+<!-- Div to show when there is no locker available-->
 	<div class="page" id="noLocker">
 		<div id="welcome" class="container">
 			<div class="title">
@@ -114,6 +95,7 @@ Released   : 20140207
 		</div>
 	</div>
 
+<!-- Div that shows when a key is returned -->
 	<div class="page" id="keyReturned">
 		<div id="welcome" class="container">
 			<div class="title">
@@ -125,6 +107,8 @@ Released   : 20140207
 		</div>
 	</div>
 
+
+<!-- Div that shows when the key is not returned  -->
 	<div class="page" id="keyReturnedTryAgain">
 		<div id="welcome" class="container">
 			<div class="title">
@@ -136,6 +120,7 @@ Released   : 20140207
 		</div>
 	</div>
 
+<!-- Div that shows before the door is closed -->
 	<div class="page" id="keyReturnedThenClose">
 		<div id="welcome" class="container">
 			<div class="title">
@@ -147,6 +132,7 @@ Released   : 20140207
 		</div>
 	</div>
 
+<!-- Div that shows the request page -->
 	<div class="page" id="request">
 		<div id="welcome" class="container">
 			<div class="title">
@@ -164,6 +150,7 @@ Released   : 20140207
 		</div>
 	</div>
 
+<!-- Div that shows the request confirmation -->
 	<div class="page" id="requestConfirmPage">
 		<div id="welcome" class="container">
 			<div class="title">
@@ -175,6 +162,7 @@ Released   : 20140207
 		</div>
 	</div>
 
+<!-- Div that shows when there is no space  -->
 	<div class="page" id="noSpace">
 		<div id="welcome" class="container">
 			<div class="title">
@@ -185,6 +173,7 @@ Released   : 20140207
 		</div>
 	</div>
 
+<!-- Div that shows when a bar does not exist -->
 	<div class="page" id="barDNE">
 		<div id="welcome" class="container">
 			<div class="title">
@@ -195,6 +184,7 @@ Released   : 20140207
 		</div>
 	</div>
 
+<!-- Div that shows then the password is incorrect -->
 	<div class="page" id="incorrectPass">
 		<div id="welcome" class="container">
 			<div class="title">
@@ -205,6 +195,18 @@ Released   : 20140207
 		</div>
 	</div>
 
+<!-- Link the JS-->
 <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : Embellished
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20140207
+
+-->
