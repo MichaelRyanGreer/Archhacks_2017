@@ -26,7 +26,7 @@ function on_callPhp_alert_tender() {
 	<!--
 <?php
 	function php_func()	{
-		$to = "jsleshem@gmail.com";
+		$to = "test@gmail.com";
 		$subject = "Test";
 		$now = time();
 		$message = "This email was sent from the homepage at " . $now . " in unix time.";
@@ -38,7 +38,7 @@ function on_callPhp_alert_tender() {
 
 <?php
 	function php_alert_tender()	{
-		$to = "jsleshem@gmail.com";
+		$to = "test@gmail.com";
 		$subject = "Drunk Client!";
 		$now = time();
 		$message = "Someone at your bar is drunk. Please make sure that they do not drive home. This was sent at " . $now . " in unix time.";
